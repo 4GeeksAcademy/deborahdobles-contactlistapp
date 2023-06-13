@@ -37,6 +37,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			
 			
+
+
+
+
+
+			
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
