@@ -67,7 +67,7 @@ const AddContact = ({ contactId, onAddContact, onUpdateContact }) => {
   };
 
   return (
-    <div>
+   <div>
       <h2>{contactId ? 'Edit Contact' : 'Create a New Contact'}</h2>
       <form onSubmit={handleSubmit}>
         <div>

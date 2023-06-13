@@ -1,3 +1,9 @@
+import rigoImage from "../../img/rigo-baby.jpg";
+import  Contact  from "../component/contacts.jsx";
+const apiUrl=process.env.API_URL
+const agendaSlug=process.env.AGENDA_SLUG
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {

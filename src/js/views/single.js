@@ -11,7 +11,6 @@ export const Single = props => {
 		<div className="jumbotron">
 			<AddContact/>
 			<h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1>
-
 			<hr className="my-4" />
 
 			<Link to="/">
