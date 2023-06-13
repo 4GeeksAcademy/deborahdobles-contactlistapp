@@ -1,7 +1,5 @@
 import React, { useEffect, useState} from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan, faPencil, faLocationDot, faPhoneFlip, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
     return (
@@ -13,19 +11,15 @@ const Contact = () => {
                 <div className="col-md-6 text start">
                     <div className="card-body">
                         <h5 className="card-title">Card Title</h5>
-                        <p className="card-text"><FontAwesomeIcon icon={faLocationDot} className="me-4"/>Location</p>
-                        <p className="card-text"><FontAwesomeIcon icon={faPhoneFlip} className="me-4"/>Phone</p>
-                        <p className="card-text"><FontAwesomeIcon icon={faEnvelope} className="me-4"/>Email</p>
+                            <p className="card-text1">Location</p>
+                            <p className="card-text2">Phone</p>
+                            <p className="card-text3">Email</p>
                     </div>
                 </div>
                 <div className="col-md-2">
                     <div className="card-body d-flex justify-content-end">
-                        <button className="btn btn-light">
-                            <FontAwesomeIcon icon={faPencil} />
-                        </button>
-                        <button className="btn btn-light">
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </button>
+                        <button className="btn btn-light"></button>
+                        <button className="btn btn-light"></button>
                     </div>
                 </div>
             </div>
