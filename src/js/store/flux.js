@@ -1,5 +1,5 @@
 import rigoImage from "../../img/rigo-baby.jpg";
-import  Contact  from "../component/contacts.jsx";
+import { ContactCard } from "../component/ContactCard";
 const apiUrl=process.env.API_URL
 const agendaSlug=process.env.AGENDA_SLUG
 
@@ -7,42 +7,98 @@ const agendaSlug=process.env.AGENDA_SLUG
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				},
-				
-				
-			],
-			contactos : [],
+			contacts:[]
 			
 		},
 		actions: {
+			addContact: async (contact) => {
+				let response = await fetch(apiUrl + "/", {
+				  body: JSON.stringify({ ...contact, agenda_slug: agendaSlug }),
+				  method: "POST",
+				  headers: {
+					"Content-type": "application/json"
+				  }
+				});
+			  
+				if (!response.ok) {
+				  console.log(response.status + ": " + response.statusText);
+				  return;
+				}
+			  
+				let data = await response.json();
+				let store = getStore();
+				let newContacts = [...store.contacts, { ...contact, id: data.id }];
+				setStore({ contacts: newContacts });
+			  },
+			  
+			  delContact: async (id) => {
+				let response = await fetch(apiUrl + "/" + id, {
+				  method: "DELETE"
+				});
+			  
+				if (response.ok) {
+				  let newContacts = [...getStore().contacts];
+				  let index = newContacts.findIndex((contact) => contact.id == id);
+				  newContacts.splice(index, 1);
+				  setStore({ contacts: newContacts });
+				} else {
+				  console.error(response.status + ": " + response.statusText);
+				}
+			  },
+			  
+			
+			
+			  UpContact: async (updatedContact, id) => {
+				const response = await fetch(apiUrl + "/" + id, {
+				  body: JSON.stringify({ ...updatedContact, agenda_slug: agendaSlug }),
+				  method: "PUT",
+				  headers: {
+					"Content-type": "application/json",
+				  },
+				});
+			  
+				if (!response.ok) {
+				  console.log(response.status + ":" + response.statusText);
+				  return;
+				}
+			  
+				const newContacts = [...getStore().contacts];
+				const index = newContacts.findIndex((contact) => contact.id == id);
+				newContacts[index] = updatedContact;
+				setStore({ contacts: newContacts });
+			  },
+			  
+			
+			
+
+			getAgenda:()=>{
+				fetch(apiUrl + "/agenda/"+agendaSlug)
+				.then(response=>{
+					if(response.ok){
+						return response.json()
+					}else{
+						console.log(response.status + ": " + response.statusText)
+					}
+				})
+				.then(data=>{
+					console.log(data)
+					setStore({contacts:data})
+				})
+				.catch(error=>{
+					console.log(error)
+				})
+				console.log("Receiving petition")
+			},
+			
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
-			
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/ale_agenda")
-				.then((res) => res.json())
-				.then((data) => setStore({contacts: data}));
+				/**
+					fetch().then().then(data => setStore({ "foo": data.bar }))
+				*/
 			},
-			
-			
-
-
-
-
-
-			
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
