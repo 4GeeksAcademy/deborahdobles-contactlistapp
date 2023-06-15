@@ -45,8 +45,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.error(response.status + ": " + response.statusText);
 				}
 			  },
-			  
-			
 			
 			  UpContact: async (updatedContact, id) => {
 				const response = await fetch(apiUrl + "/" + id, {
@@ -69,8 +67,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  },
 			  
 			
-			
-
 			getAgenda:()=>{
 				fetch(apiUrl + "/agenda/"+agendaSlug)
 				.then(response=>{

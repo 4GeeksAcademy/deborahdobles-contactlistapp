@@ -7,16 +7,15 @@ import { Modal } from "../component/modal";
 
 export const Home = () => {
 	const {store,actions}=useContext(Context)
-	const {contacts} = store
 	useEffect(()=>{
 		actions.getAgenda()
 	},[])
 
 	return(
 	<div className="d-flex flex-column justify-center mt-5">
-		<h1>Debs's IPhone Contact List</h1>
+		<h1>Contact List</h1>
 		<div className="list-group contact-list">
-			{contacts.map((contact,index) =>
+			{store.contacts.map((contact,index) =>
 			<div key={index}>
 		<ContactCard
 			name={contact.full_name}
