@@ -124,7 +124,7 @@ export const Modal = props => {
                 type="text"
                 className="form-control"
                 id="emailInput"
-                placeholder="Put your email here"
+                placeholder="Please insert your email in the corresponding format"
 				value={email}
 				onChange={e=>setEmail(e.target.value)}
               />
