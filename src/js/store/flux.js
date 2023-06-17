@@ -11,13 +11,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 		},
 		actions: {
+
+
 			addContact: async (contact) => {
+				console.log(contact)
 				let response = await fetch(apiUrl + "/", {
-				  body: JSON.stringify({ ...contact, agenda_slug: agendaSlug }),
-				  method: "POST",
-				  headers: {
-					"Content-type": "application/json"
-				  }
+					method: "POST",
+					headers: {
+						"Content-type": "application/json"
+					  },
+				  body: JSON.stringify({ ...contact, agenda_slug: "deborahdm" }),
 				});
 			  
 				if (!response.ok) {
