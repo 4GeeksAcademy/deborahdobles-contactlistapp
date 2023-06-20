@@ -7,4 +7,4 @@ export const Footer = () => (
 			<a href="https://github.com/deborahdobles">DEBORAH DOBLES</a>
 		</p>
 	</footer>
-);
+);        
